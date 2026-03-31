@@ -3,7 +3,11 @@ package com.jad.juniafps;
 public enum ActionPlayer {
     TURN_LEFT("TurnLeft"),
     TURN_RIGHT("TurnRight"),
-    ;
+    FORWARD("forward"),
+    BACKWARD("backward"),
+    LEFT("left"),
+    RIGHT("right"),
+    EXIT("exit");;
 
     private final String actionKey;
     private boolean isActive;

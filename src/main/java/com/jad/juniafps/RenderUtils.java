@@ -3,10 +3,10 @@ package com.jad.juniafps;
 public enum RenderUtils {
     ;
     public static final double ROUND_CONSTANT = 1000.0;
-    public static final float FONT_SIZE = 6f;
+    public static final float FONT_SIZE = 2f;
     static final double VIEWING_ANGLE = 90.0;
-    static final int SCREEN_WIDTH = 500;
-    static final int SCREEN_HEIGHT = 120;
+    static final int SCREEN_WIDTH = 1500;
+    static final int SCREEN_HEIGHT = 384;
     static final int SCREEN_DISTANCE = RenderUtils.SCREEN_HEIGHT * 6 / 10;
     static final int WALL_HEIGHT = RenderUtils.SCREEN_HEIGHT * 6 / 10;
     static final int VIEWING_DISTANCE = 5000;

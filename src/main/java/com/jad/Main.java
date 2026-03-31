@@ -10,12 +10,12 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         Map map = new Map("map_zebi.bmp");
-        Player player = new Player();
+        Player player = new Player(new Point(429, 349), 0);
         Renderer renderer = new Renderer();
         GameWindow window = new GameWindow("SALAMALEYKOUM");
         int direction = 0;
         for (; ; ) {
-            window.display(renderer.render(new Point(500, 278), player.getDirection(), map));
+            window.display(renderer.render(player.getPosition(), player.getDirection(), map));
             player.handleActions();
             direction = (direction + 1) % 360;
         }

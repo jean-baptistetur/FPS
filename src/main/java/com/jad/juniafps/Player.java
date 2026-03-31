@@ -1,20 +1,31 @@
 package com.jad.juniafps;
 
+import java.awt.*;
+
 public class Player {
     static final int MAX_DEGREES = 360;
+    private static int playerStep = 10;
     private int direction = 0;
+    private Point position;
+
+    public Player(Point position, int direction) {
+        this.position = position;
+        this.direction = direction;
+    }
+
 
     public int getDirection() {
         return this.direction;
     }
 
     public void turnLeft() {
-        this.direction = (direction - 8) % MAX_DEGREES;
+        this.direction = (direction - 10) % MAX_DEGREES;
         ActionPlayer.TURN_LEFT.turnOff();
+
     }
 
     public void turnRight() {
-        this.direction = (direction + 8) % MAX_DEGREES;
+        this.direction = (direction + 10) % MAX_DEGREES;
         ActionPlayer.TURN_RIGHT.turnOff();
     }
 
@@ -25,5 +36,55 @@ public class Player {
         if (ActionPlayer.TURN_RIGHT.isActive()) {
             this.turnRight();
         }
+        if (ActionPlayer.FORWARD.isActive()) {
+            this.moveForward();
+        }
+        if (ActionPlayer.BACKWARD.isActive()) {
+            this.moveBackward();
+        }
+        if (ActionPlayer.LEFT.isActive()) {
+            this.moveLeft();
+        }
+        if (ActionPlayer.RIGHT.isActive()) {
+            this.moveRight();
+        }
+
+    }
+
+    private void moveRight() {
+        final double angleRadians = RenderUtils.degreesToRadians(this.direction);
+        final int newX = (int) (this.position.x + Player.playerStep * Math.sin(angleRadians));
+        final int newY = (int) (this.position.y - Player.playerStep * Math.cos(angleRadians));
+
+        this.position = new Point(newX, newY);
+    }
+
+    private void moveLeft() {
+        final double angleRadians = RenderUtils.degreesToRadians(this.direction);
+        final int newX = (int) (this.position.x - Player.playerStep * Math.sin(angleRadians));
+        final int newY = (int) (this.position.y + Player.playerStep * Math.cos(angleRadians));
+
+        this.position = new Point(newX, newY);
+    }
+
+    private void moveBackward() {
+        final double angleRadians = RenderUtils.degreesToRadians(this.direction);
+        final int newX = (int) (this.position.x + Player.playerStep * Math.cos(angleRadians));
+        final int newY = (int) (this.position.y + Player.playerStep * Math.sin(angleRadians));
+
+        this.position = new Point(newX, newY);
+    }
+
+    private void moveForward() {
+        final double angleRadians = RenderUtils.degreesToRadians(this.direction);
+        final int newX = (int) (this.position.x - Player.playerStep * Math.cos(angleRadians));
+        final int newY = (int) (this.position.y - Player.playerStep * Math.sin(angleRadians));
+
+        this.position = new Point(newX, newY);
+
+    }
+
+    public Point getPosition() {
+        return this.position;
     }
 }
